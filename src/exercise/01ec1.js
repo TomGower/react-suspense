@@ -10,10 +10,12 @@ let pokemonError
 const pokemonPromise = fetchPokemon('pikachukka')
 
 pokemonPromise.then(data => pokemon = data)
-  .catch(error => pokemonError = error)
+  .catch(error => pokemonError = error) // need this catch as an error handler
 
 function PokemonInfo() {
+  // promise results in an error, throw the error
   if (pokemonError) throw pokemonError
+  // promise is not resolved, throw the promise
   if (!pokemon) throw pokemonPromise
 
   return (
@@ -27,6 +29,7 @@ function PokemonInfo() {
 }
 
 function App() {
+  // wrap entire Suspense component in ErrorBoundary so ErrorBoundary handles the thrown error
   return (
     <div className="pokemon-info-app">
       <div className="pokemon-info">
