@@ -33,6 +33,24 @@ const PokemonResourceCacheContext = React.createContext()
 
 function PokemonCacheProvider({children, cacheTime}) {
   const cache = React.useRef({})
+  // from exercise introduction
+  // 🦉 There are several ways to do this. All of them come with trade-offs. Feel free to implement it however you like.
+  
+  // KCD solution
+  /*
+  const expirations = React.useRef({})
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      for (const [name, time] of Object.entries(expirations.current)) {
+        if (time < Date.now()) {
+          delete cache.current[time]
+        }
+      }
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [cacheTime])
+
+  */
 
   const getPokemonResource = React.useCallback(name => {
     const lowerName = name.toLowerCase()
