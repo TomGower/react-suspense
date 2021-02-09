@@ -41,11 +41,13 @@ function createPokemonResource(pokemonName) {
 }
 
 function getPokemonResource(name) {
-  if (pokemonResourceCache[name]) {
-    return pokemonResourceCache[name]
+  // important to do this because of consistency
+  const lowerName = name.toLowerCase()
+  if (pokemonResourceCache[lowerName]) {
+    return pokemonResourceCache[lowerName]
   }
-  const newValue = createPokemonResource(name)
-  pokemonResourceCache[name] = newValue
+  const newValue = createPokemonResource(lowerName)
+  pokemonResourceCache[lowerName] = newValue
   return newValue
 }
 
