@@ -76,6 +76,7 @@ function App() {
     setPokemonName('')
   }
 
+  // suspense will automatically show fallback state on first render, regardless of isPending
   return (
     <div className="pokemon-info-app">
       <PokemonForm pokemonName={pokemonName} onSubmit={handleSubmit} />
